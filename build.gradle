@@ -45,5 +45,5 @@ repositories {
 dependencies {
        // testCompile 'junit:junit:4.12'
     //compile 'com.googlecode.soundlibs:basicplayer:3.0.0.0'
-   // compile fileTree(dir: 'lib', include: '*.jar')
+    compile fileTree(dir: 'lib', include: '*.jar')
 }
