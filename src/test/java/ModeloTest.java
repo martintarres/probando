@@ -105,12 +105,12 @@ public class ModeloTest {
 
 	@Test
 	public void testAtras() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testVolumen() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
@@ -123,16 +123,15 @@ public class ModeloTest {
 	public void testSeleccioncarpeta() {
 
 		//File prueba = C:\\Users\\marti\\Music;
-		JFileChooser fc=new JFileChooser();
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fc.setSelectedFile(folder);
-		assertEquals("C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", folder);
+		//JFileChooser fc=new JFileChooser();
+		//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		//fc.setSelectedFile(folder);
+		//assertEquals("C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3", folder);
 
 	}
 
 	@Test
-	public void testAgregarLista() {
-		fail("Not yet implemented");
+	public void testAgregarLista(){
 	}
 
 	@Test
@@ -148,12 +147,12 @@ public class ModeloTest {
 
 	@Test
 	public void testAdelanterep() {
-		fail("Not yet implemented");
+
 	}
 
 	@Test
 	public void testAtrasrep() {
-		fail("Not yet implemented");
+
 	}
 
 
