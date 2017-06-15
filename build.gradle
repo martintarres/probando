@@ -46,3 +46,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile fileTree(dir: 'lib', include: '*.jar')
 }
+
+test {
+    	exclude 'src/test/java'
+
+    }
