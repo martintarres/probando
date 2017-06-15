@@ -47,7 +47,3 @@ dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 
-test {
-    	exclude 'src/test/java/ModeloTest'
-
-    }
