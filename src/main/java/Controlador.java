@@ -19,13 +19,13 @@ public class Controlador implements ActionListener {
 
 	Modelo modelo;
 	Vista vista;
-	List listapr;
+	private List listapr;
 	ClaseObservador miObservador;
 
 	
 	List listarep;
 	
-	public Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
+	Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
 		
 		miObservador= vista.miObservador;
 		
@@ -48,7 +48,7 @@ public class Controlador implements ActionListener {
 		vista.vistaprincipal.SeleccionCarpeta.addActionListener(this);
 		vista.vistaprincipal.ListaReproduccion.addActionListener(this);
 		vista.vistaprincipal.AgregarListaReproduccion.addActionListener(this);
-		vista.vistaprincipal.list.addMouseListener(ml);
+		//vista.vistaprincipal.list.addMouseListener(ml);
 		
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase lista de reproduccion
@@ -63,6 +63,7 @@ public class Controlador implements ActionListener {
 		vista.vistalistareproduccion.BotonAdelante.addActionListener(this);
 		vista.vistalistareproduccion.BotonAtras.addActionListener(this);
 		vista.vistalistareproduccion.BarraVolumen.addChangeListener(new SliderListener());
+		vista.vistalistareproduccion.ListaAleatoria.addActionListener(this);
 		
 		
 		
@@ -131,7 +132,6 @@ public class Controlador implements ActionListener {
 			}
 			
 			if(vista.vistaprincipal.ListaReproduccion == e.getSource()){
-				System.out.println("Toque ir a lista reprodiccuion");
 				miObservador.setPanel(3);
 			}
 			
@@ -150,7 +150,7 @@ public class Controlador implements ActionListener {
 			
 			if(vista.vistalistareproduccion.BotonPlay == e.getSource()){
 				miObservador.setPanel(1);
-				modelo.play();
+				modelo.verListaRepr();
 			}
 			
 			if(vista.vistalistareproduccion.BotonPause == e.getSource()){
@@ -176,8 +176,13 @@ public class Controlador implements ActionListener {
 				modelo.atrasrep();
 				miObservador.setPanel(1);
 			}
+
+			if(vista.vistalistareproduccion.ListaAleatoria == e.getSource()){
+				miObservador.setPanel(1);
+				modelo.verListaRepr();
+			}
 	}
-	
+
 	class SliderListener implements ChangeListener {
 
 		public void stateChanged(ChangeEvent e) {
@@ -199,36 +204,6 @@ public class Controlador implements ActionListener {
 		}
 		 
 	 }
-
-
-	 MouseListener ml=new MouseAdapter() {
-		   
-		   @Override
-		   public void mouseReleased(MouseEvent arg0) {
-			  
-		   }
-		   
-		   @Override
-		   public void mousePressed(MouseEvent arg0) {
-			   
-		   }
-		   
-		   @Override
-		   public void mouseExited(MouseEvent arg0) {
-			   
-		   }
-		   
-		   @Override
-		   public void mouseEntered(MouseEvent arg0) {
-			   
-		   }
-		   
-		   @Override
-		   public void mouseClicked(MouseEvent arg0) {
-			
-		    
-		   }
-		};
 	
 	
 	
