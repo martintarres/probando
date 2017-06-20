@@ -1,6 +1,7 @@
 import java.awt.Component;
 import java.awt.List;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JSlider;
@@ -22,6 +23,8 @@ public class Modelo {
 		File folder;
 		File archivo;
 		List listarep;
+		ArrayList <String> listarepro;
+		File reproducirListaRepr;
 
 
 		public void iniciarm() {
@@ -37,6 +40,8 @@ public class Modelo {
 				folder = fc.getSelectedFile();
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
 			}
+			listarepro= new ArrayList<String>();
+
 
 		}
 
@@ -79,7 +84,7 @@ public class Modelo {
 
 			archivo = new File(unir(listapr.getSelectedItem()));
 
-			System.out.println("soy archivo1 " + archivo);
+			System.out.println("soy archivo1 " + archivo.getAbsolutePath());
 
 			if (player.getStatus() == -1 || player.getStatus() == 2) {
 
@@ -263,7 +268,10 @@ public class Modelo {
 			this.listarep=listarep;
 			
 			listarep.add(archi);
-			
+			String devuelvo;
+			devuelvo=unir(string);
+			listarepro.add(devuelvo);
+
 	}
 		/*
 		aca borramos los archivos de nuestra lista de reproduccion
@@ -272,32 +280,52 @@ public class Modelo {
 	public void borrar(String archivo){
 
 		listarep.remove(archivo);
+		for(int i=0; i<listarepro.size(); i++){
+			if(listarepro.get(i).contains(listarep.getSelectedItem())) {
+				listarepro.remove(listarepro.get(i));
+
+			}
+		}
+		System.out.println("tengo " + listarepro.size()+ " archivos");
 	}
 
 	
 	public void adelanterep(){
 		listarep.select((listarep.getSelectedIndex()+1));
-		//unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
-		try {
-			player.stop();
-			player.open(new File(unir(listarep.getSelectedItem())));
-			player.play();
-		} catch (BasicPlayerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		verListaRepr();
+
+
 	}
 	public void atrasrep(){
 		
 		listarep.select((listarep.getSelectedIndex()-1));
-		//unir = "C:\\Users\\marti\\Music\\" + listarep.getSelectedItem();
+		verListaRepr();
+	}
+
+		/* En este metodo creamos un arrayList con los archivos que cargamos a nuestra lista de
+		reproduccion con el path completo, porque si no lo perdiamos
+		 */
+	public void verListaRepr(){
+
+
+		for(int i=0; i<listarepro.size(); i++){
+			if(listarepro.get(i).contains(listarep.getSelectedItem())) {
+				reproducirListaRepr = new File(listarepro.get(i));
+				playLista(reproducirListaRepr);
+
+			}
+		}
+	}
+
+	/* En este metodo lo que hacemos es reproducir el archivo de la lista de reproduccion
+
+	 */
+	public void playLista(File repro){
 		try {
-			player.stop();
-			player.open(new File(unir(listarep.getSelectedItem())));
+			player.open(repro);
 			player.play();
-		} catch (BasicPlayerException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (BasicPlayerException e) {
+			e.printStackTrace();
 		}
 	}
 	
