@@ -2,21 +2,22 @@ import java.awt.Component;
 import java.awt.List;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Random;
 
+import javax.naming.ldap.BasicControl;
 import javax.swing.JFileChooser;
 import javax.swing.JSlider;
 
-import javazoom.jlgui.basicplayer.BasicController;
-import javazoom.jlgui.basicplayer.BasicPlayer;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
+import javazoom.jlgui.basicplayer.*;
 
-	/*	En la clase modelo se encuentra todo el codigo que accen las acciones
-	 */
-public class Modelo {
+/*	En la clase modelo se encuentra todo el codigo que accen las acciones
+ */
+public class Modelo extends Controlador implements BasicPlayerListener {
 
 		String path;
 		File files = null;
-		static BasicPlayer player;
+		BasicPlayer player;
 		List listapr;
 		String unir;
 		File[] listFiles;
@@ -25,7 +26,17 @@ public class Modelo {
 		List listarep;
 		ArrayList <String> listarepro;
 		File reproducirListaRepr;
-
+		Random numeroalea;
+		int terminoInicial;
+		int terminoFinal;
+		int resultado;
+		double bytesLength;
+		float progressUpdate;
+		int progressNow;
+		boolean alea;
+		boolean termine;
+		boolean enPrincipal;
+		Controlador controlador;
 
 		public void iniciarm() {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
@@ -41,8 +52,12 @@ public class Modelo {
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
 			}
 			listarepro= new ArrayList<String>();
-
-
+			numeroalea = new Random();
+			terminoInicial=0;
+			player.addBasicPlayerListener(this);
+			alea = false;
+			termine=false;
+			enPrincipal=true;
 		}
 
 		/*
@@ -271,6 +286,7 @@ public class Modelo {
 			String devuelvo;
 			devuelvo=unir(string);
 			listarepro.add(devuelvo);
+			terminoFinal= listarepro.size();
 
 	}
 		/*
@@ -328,8 +344,87 @@ public class Modelo {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
 
+	public void aleatorio(){
+
+		//System.out.println("Soy numero aleatorio " + resultado);
+		if(alea == true){
+			alea=false;
+		}
+		else{
+			alea=true;
+		}
+
+	}
+
+	public void cambiarAleatorio(){
+		resultado = (int) (numeroalea.nextDouble()* terminoFinal+ terminoInicial) ;
+		reproducirListaRepr = new File(listarepro.get(resultado));
+		playLista(reproducirListaRepr);
+
+	}
+
+	@Override
+	public void opened(Object arg0, Map arg1) {
+
+	}
+
+	@Override
+	public void progress(int bytesread, long microseconds, byte[] pcmdata, Map properties) {
+
+	}
+
+	@Override
+	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
+
+				if (basicPlayerEvent.getCode() == 8) {
+					if(enPrincipal==false) {
+
+					if (alea == false) {
+						adelanterep();
+
+
+					}
+					if (alea == true) {
+						cambiarAleatorio();
+					}
+				}
+			}
+
+	}
+
+	@Override
+	public void setController(BasicController basicController) {
+
+	}
+
+/*
+	@Override
+	public void opened(Object arg0, Map arg1) {
+		if (arg1.containsKey("audio.length.bytes")) {
+			bytesLength = Double.parseDouble(arg1.get("audio.length.bytes").toString());
+		}
+	}
+
+	@Override
+	public void progress(int bytesread, long microseconds, byte[] pcmdata, Map properties) {
+		progressUpdate = (float) (bytesread * 1.0f / bytesLength * 1.0f);
+		progressNow = (int) (bytesLength * progressUpdate);
+		//System.out.println(progressUpdate);
+			if(progressUpdate == 1){
+				cambiarAleatorio();
+			}
+
+	}
+
+	@Override
+	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
+
+	}
+
+	@Override
+	public void setController(BasicController basicController) {
+
+	}
+*/
 }
