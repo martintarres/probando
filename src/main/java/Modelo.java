@@ -1,70 +1,63 @@
-import java.awt.Component;
-import java.awt.List;
+import javazoom.jlgui.basicplayer.*;
+
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-import javax.naming.ldap.BasicControl;
-import javax.swing.JFileChooser;
-import javax.swing.JSlider;
-
-import javazoom.jlgui.basicplayer.*;
-
 /*	En la clase modelo se encuentra todo el codigo que accen las acciones
  */
 public class Modelo extends Controlador implements BasicPlayerListener {
 
-		String path;
-		File files = null;
-		BasicPlayer player;
-		List listapr;
-		String unir;
-		File[] listFiles;
-		File folder;
-		File archivo;
-		List listarep;
-		ArrayList <String> listarepro;
-		File reproducirListaRepr;
-		Random numeroalea;
-		int terminoInicial;
-		int terminoFinal;
-		int resultado;
-		double bytesLength;
-		float progressUpdate;
-		int progressNow;
-		boolean alea;
-		boolean termine;
-		boolean enPrincipal;
-		Controlador controlador;
+		private String path;
+		private	File files = null;
+		private BasicPlayer player;
+		private	List listapr;
+		private String unir;
+		private File[] listFiles;
+		private File folder;
+    private List listarep;
+		private ArrayList <String> listarepro;
+		private File reproducirListaRepr;
+		private Random numeroalea;
+		private int terminoInicial;
+		private int terminoFinal;
+    //private double bytesLength;
+		//private float progressUpdate;
+		//private int progressNow;
+		private boolean alea;
+        boolean enPrincipal;
 
-		public void iniciarm() {
+
+		void iniciarm() {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
 
 			JFileChooser fc = new JFileChooser();                            //Aca vamos a elegir de que carpeta queremos cargar
 			fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);        // nuestras canciones
 
-			Component contentPane = null;
-			int ventanaseleccionada = fc.showOpenDialog(contentPane);
+			/* Component contentPane = null; */
+			int ventanaseleccionada = fc.showOpenDialog(null);
 
 			if (ventanaseleccionada == JFileChooser.APPROVE_OPTION) {
 				folder = fc.getSelectedFile();
 				path = folder.getAbsolutePath();                        // aca obtenemos el path de la carpeta seleccionada
 			}
-			listarepro= new ArrayList<String>();
+			listarepro= new ArrayList<>();
 			numeroalea = new Random();
 			terminoInicial=0;
 			player.addBasicPlayerListener(this);
 			alea = false;
-			termine=false;
-			enPrincipal=true;
+/* boolean termine; */
+            enPrincipal=true;
 		}
 
 		/*
             en el metodo cargar lo que hacemos es cargar todas las canciones que esten en los formatos soportados por nuestro
             reproductor, en la lista para poder ser reproducida
          */
-		public void cargar(List listapr) {
+		void cargar(List listapr) {
 
 
 			this.listapr = listapr;
@@ -72,9 +65,9 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 			listFiles = folder.listFiles();
 
-			for (int i = 0; i < listFiles.length; i++) {
-				if (listFiles[i].isFile()) {
-					files = listFiles[i].getAbsoluteFile();
+			for (File listFile : listFiles) {
+				if (listFile.isFile()) {
+					files = listFile.getAbsoluteFile();
 					if (files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")) {
 						System.out.println(files);
 						//		System.out.println(listFiles[i]);
@@ -93,11 +86,11 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	 */
 
 
-		public void play() {
+		void play() {
 			//unir = path.concat("\\" + listapr.getSelectedItem());
 
 
-			archivo = new File(unir(listapr.getSelectedItem()));
+            File archivo = new File(unir(listapr.getSelectedItem()));
 
 			System.out.println("soy archivo1 " + archivo.getAbsolutePath());
 
@@ -145,7 +138,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo unir me crea el path completo para poder reproducir
 		 */
 
-		public String unir(String seleccion){
+		private String unir(String seleccion){
 			unir = path.concat("\\" + seleccion);
 			return unir;
 
@@ -155,7 +148,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo pause, pausa la reproduccion de la cancion
 	 */
 	
-	public void pause(){
+	void pause(){
 		try {
 			player.pause();
 			System.out.println("soy status pausa " + player.getStatus());
@@ -169,7 +162,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo stop detiene la reproduccion de la cancion
 	 */
 	
-	public void stop(){
+	void stop(){
 		try {
 			player.stop();
 			System.out.println("Soy status stop " + player.getStatus());
@@ -183,7 +176,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	El metodo adelante, selecciona el proximo elemento de la lista y lo pone a repdoducir
 	 */
 
-	public void adelante(){
+	void adelante(){
 		listapr.select((listapr.getSelectedIndex()+1));
 		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
 		try {
@@ -199,7 +192,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	/*
 		El metodo atras selecciona el elemento anterior de la lista y lo pone a reproducir
 	 */
-	public void atras(){
+	void atras(){
 		
 		listapr.select((listapr.getSelectedIndex()-1));
 		//unir = "C:\\Users\\marti\\Music\\" + listapr.getSelectedItem();
@@ -216,7 +209,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	/*
 			el metodo volumen cambia el volumen de la cancion que se esta reproduciendo
 	 */
-	public void volumen(JSlider source){
+	void volumen(JSlider source){
 		
 		source.setMaximum(141);
 		try {
@@ -231,37 +224,36 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El meetodo buscar cancion lo que hace es buscar de acuerdo a lo que nosotros vamos escribiendo
 	 */
 
-	public void buscarcancion(String s){
+	void buscarcancion(String s){
 		
 		listapr.removeAll();				//aca se borra toda la lista
-		
-		for(int i=0; i<listFiles.length;i++){
-			if(listFiles[i].isFile()){
-				files=listFiles[i].getAbsoluteFile();
-				if(files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")){
-					
-					
-					if(files.toString().toLowerCase().contains(s)){		// se fija si hay canciones que contengan las letras
+
+		for (File listFile : listFiles) {
+			if (listFile.isFile()) {
+				files = listFile.getAbsoluteFile();
+				if (files.getName().endsWith("mp3") || files.getName().endsWith("wav") || files.getName().endsWith("mp4")) {
+
+
+					if (files.toString().toLowerCase().contains(s)) {        // se fija si hay canciones que contengan las letras
 						//System.out.println(files.toString());			// que estamos ingresando, ignorando mayusculas
-						listapr.add(files.getName());					// y si hay, las agrega a la lista
-						
+						listapr.add(files.getName());                    // y si hay, las agrega a la lista
+
 					}
-					
-					}
-			
-		}
+
+				}
+
+			}
 		}
 	}
 		/*
 			En este metodo lo que hacemo es seleccionar la carpeta de donde queremos cargar nuestra musica
 		 */
 
-	public void seleccioncarpeta(List lista){
+	void seleccioncarpeta(List lista){
 		JFileChooser fc=new JFileChooser();
 		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		
-		Component contentPane = null;
-		int ventanaseleccionada = fc.showOpenDialog(contentPane);
+
+		int ventanaseleccionada = fc.showOpenDialog(null);
 		
 		if(ventanaseleccionada== JFileChooser.APPROVE_OPTION){
 				folder=fc.getSelectedFile();
@@ -277,7 +269,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		vista principal a la lista de reproduccion
 		 */
 	
-	public void agregarLista(String string, List listarep){
+	void agregarLista(String string, List listarep){
 			String archi;
 			archi=string;
 			this.listarep=listarep;
@@ -293,7 +285,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		aca borramos los archivos de nuestra lista de reproduccion
 		 */
 	
-	public void borrar(String archivo){
+	void borrar(String archivo){
 
 		listarep.remove(archivo);
 		for(int i=0; i<listarepro.size(); i++){
@@ -306,13 +298,13 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	}
 
 	
-	public void adelanterep(){
+	void adelanterep(){
 		listarep.select((listarep.getSelectedIndex()+1));
 		verListaRepr();
 
 
 	}
-	public void atrasrep(){
+	void atrasrep(){
 		
 		listarep.select((listarep.getSelectedIndex()-1));
 		verListaRepr();
@@ -321,12 +313,12 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		/* En este metodo creamos un arrayList con los archivos que cargamos a nuestra lista de
 		reproduccion con el path completo, porque si no lo perdiamos
 		 */
-	public void verListaRepr(){
+		void verListaRepr(){
 
 
-		for(int i=0; i<listarepro.size(); i++){
-			if(listarepro.get(i).contains(listarep.getSelectedItem())) {
-				reproducirListaRepr = new File(listarepro.get(i));
+		for (String aListarepro : listarepro) {
+			if (aListarepro.contains(listarep.getSelectedItem())) {
+				reproducirListaRepr = new File(aListarepro);
 				playLista(reproducirListaRepr);
 
 			}
@@ -336,7 +328,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	/* En este metodo lo que hacemos es reproducir el archivo de la lista de reproduccion
 
 	 */
-	public void playLista(File repro){
+	private void playLista(File repro){
 		try {
 			player.open(repro);
 			player.play();
@@ -345,20 +337,15 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		}
 	}
 
-	public void aleatorio(){
+	void aleatorio(){
 
 		//System.out.println("Soy numero aleatorio " + resultado);
-		if(alea == true){
-			alea=false;
-		}
-		else{
-			alea=true;
-		}
+		alea = !alea;
 
 	}
 
-	public void cambiarAleatorio(){
-		resultado = (int) (numeroalea.nextDouble()* terminoFinal+ terminoInicial) ;
+	private void cambiarAleatorio(){
+        int resultado = (int) (numeroalea.nextDouble() * terminoFinal + terminoInicial);
 		reproducirListaRepr = new File(listarepro.get(resultado));
 		playLista(reproducirListaRepr);
 
@@ -378,14 +365,14 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
 
 				if (basicPlayerEvent.getCode() == 8) {
-					if(enPrincipal==false) {
+					if(!enPrincipal) {
 
-					if (alea == false) {
+					if ( !alea ) {
 						adelanterep();
 
 
 					}
-					if (alea == true) {
+					if (alea) {
 						cambiarAleatorio();
 					}
 				}
@@ -398,33 +385,4 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 	}
 
-/*
-	@Override
-	public void opened(Object arg0, Map arg1) {
-		if (arg1.containsKey("audio.length.bytes")) {
-			bytesLength = Double.parseDouble(arg1.get("audio.length.bytes").toString());
-		}
-	}
-
-	@Override
-	public void progress(int bytesread, long microseconds, byte[] pcmdata, Map properties) {
-		progressUpdate = (float) (bytesread * 1.0f / bytesLength * 1.0f);
-		progressNow = (int) (bytesLength * progressUpdate);
-		//System.out.println(progressUpdate);
-			if(progressUpdate == 1){
-				cambiarAleatorio();
-			}
-
-	}
-
-	@Override
-	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
-
-	}
-
-	@Override
-	public void setController(BasicController basicController) {
-
-	}
-*/
 }
