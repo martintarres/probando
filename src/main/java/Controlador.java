@@ -1,3 +1,8 @@
+import javazoom.jlgui.basicplayer.BasicController;
+import javazoom.jlgui.basicplayer.BasicPlayerEvent;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
+import javazoom.jlgui.basicplayer.BasicPlayerListener;
+
 import java.awt.List;
 import java.awt.TextComponent;
 import java.awt.event.ActionEvent;
@@ -7,6 +12,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Map;
 
 import javax.swing.JList;
 import javax.swing.JSlider;
@@ -15,12 +24,13 @@ import javax.swing.event.ChangeListener;
 															// Esta es la clase que sirve para controlar todas las acciones
 															// que va a realizar el programa, y lo que hace es llamar
 															// a los metodos que estan en la clase modelo
-public class Controlador implements ActionListener {
+public class Controlador implements ActionListener  {
 
 	Modelo modelo;
 	Vista vista;
 	private List listapr;
 	ClaseObservador miObservador;
+	boolean termino;
 
 	
 	List listarep;
@@ -32,6 +42,8 @@ public class Controlador implements ActionListener {
 		
 		this.modelo=modelo;
 		this.vista=vista;
+
+		termino=false;
 
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase principal
@@ -49,6 +61,9 @@ public class Controlador implements ActionListener {
 		vista.vistaprincipal.ListaReproduccion.addActionListener(this);
 		vista.vistaprincipal.AgregarListaReproduccion.addActionListener(this);
 		//vista.vistaprincipal.list.addMouseListener(ml);
+		//modelo.player.addBasicPlayerListener();
+
+
 		
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase lista de reproduccion
@@ -64,11 +79,17 @@ public class Controlador implements ActionListener {
 		vista.vistalistareproduccion.BotonAtras.addActionListener(this);
 		vista.vistalistareproduccion.BarraVolumen.addChangeListener(new SliderListener());
 		vista.vistalistareproduccion.ListaAleatoria.addActionListener(this);
-		
-		
-		
+		vista.vistalistareproduccion.BotonAleatorio.addActionListener(this);
+
+
+
+
 		
 	}
+	public Controlador() {
+
+	}
+
 	
 	/*El metodo inicial lo que hace es crear dos objeto de tipo lista, uno que va a pertenecer
 	 	a la lista principal, y otro que va a pertenecer a la lista de reproduccion, que
@@ -133,6 +154,7 @@ public class Controlador implements ActionListener {
 			
 			if(vista.vistaprincipal.ListaReproduccion == e.getSource()){
 				miObservador.setPanel(3);
+				modelo.enPrincipal=false;
 			}
 			
 			if(vista.vistaprincipal.AgregarListaReproduccion == e.getSource()){
@@ -146,6 +168,7 @@ public class Controlador implements ActionListener {
 			
 			if(vista.vistalistareproduccion.BotonVolver == e.getSource()){
 				miObservador.setPanel(4);
+				modelo.enPrincipal=true;
 			}
 			
 			if(vista.vistalistareproduccion.BotonPlay == e.getSource()){
@@ -181,9 +204,14 @@ public class Controlador implements ActionListener {
 				miObservador.setPanel(1);
 				modelo.verListaRepr();
 			}
+
+			if(vista.vistalistareproduccion.BotonAleatorio == e.getSource()){
+				modelo.aleatorio();
+
+			}
 	}
 
-	class SliderListener implements ChangeListener {
+		class SliderListener implements ChangeListener {
 
 		public void stateChanged(ChangeEvent e) {
 			JSlider source = (JSlider)e.getSource();
@@ -204,8 +232,14 @@ public class Controlador implements ActionListener {
 		}
 		 
 	 }
-	
-	
-	
-	
+
+	 public void avisar(){
+		System.out.println("soy termino " + termino);
+		termino=true;
+		System.out.println("soy termino " + termino);
+	//	modelo.adelante();
+
+	 }
+
+
 }
