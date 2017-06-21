@@ -1,22 +1,15 @@
 
 														// En esta clase se crea la vista que pertenece a la lista de
-import  java.net.URL;									//	reproduccion
-
-import java.awt.List;
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-
-
-														public class VistaListaReproduccion extends JFrame implements Observer {
-
-	ClaseObservador miObservador;
+import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+        class VistaListaReproduccion extends JFrame implements Observer {
+    private ClaseObservador miObservador;
 	//ClaseObservador miObser;
-	int seleccion;
-	
-	JPanel contentPane;
+    private int seleccion;
+	private JPanel contentPane;
 	List ListaAleatoria;
 	JToggleButton BotonAleatorio;
 	JButton BotonAdelante;
@@ -28,11 +21,11 @@ import javax.swing.border.EmptyBorder;
 	JButton BotonVolver;
 	JButton BotonBorrar;
 	
-	public VistaListaReproduccion(ClaseObservador observador) {
+	VistaListaReproduccion(ClaseObservador observador) {
 		miObservador=observador;
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
