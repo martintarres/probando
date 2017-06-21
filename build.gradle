@@ -35,7 +35,10 @@ dependencies {
 
 
 apply plugin: 'java'
-//apply plugin: "jacoco"
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: "jacoco"
 
 repositories {
     mavenCentral()
@@ -47,3 +50,40 @@ dependencies {
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 
+checkstyle {
+    ignoreFailures = true
+    toolVersion = '6.6'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+pmd {
+    ignoreFailures = true
+}
+
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+findbugs {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "low"
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+jacocoTestReport.dependsOn test
