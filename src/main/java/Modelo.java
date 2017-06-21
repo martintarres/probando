@@ -65,6 +65,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 			listFiles = folder.listFiles();
 
+			assert listFiles != null;
 			for (File listFile : listFiles) {
 				if (listFile.isFile()) {
 					files = listFile.getAbsoluteFile();
