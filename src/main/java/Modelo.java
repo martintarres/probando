@@ -32,7 +32,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
         boolean enPrincipal;
 
 
-		void iniciarm() {
+		void iniciarm() throws Exception {
 			player = new BasicPlayer();                                // Creamos un objeto de la clase BasicPlayer
 
 			JFileChooser fc = new JFileChooser();                            //Aca vamos a elegir de que carpeta queremos cargar
@@ -88,7 +88,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 	 */
 
 
-		void play() {
+		void play() throws Exception {
 			//unir = path.concat("\\" + listapr.getSelectedItem());
 
 
@@ -150,7 +150,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo pause, pausa la reproduccion de la cancion
 	 */
 	
-	void pause(){
+	void pause() throws Exception {
 		try {
 			player.pause();
 			System.out.println("soy status pausa " + player.getStatus());
@@ -164,7 +164,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		El metodo stop detiene la reproduccion de la cancion
 	 */
 	
-	void stop(){
+	void stop() throws Exception {
 		try {
 			player.stop();
 			System.out.println("Soy status stop " + player.getStatus());

@@ -81,9 +81,13 @@ public class Controlador implements ActionListener  {
 
 				 */
 	
-	void iniciar(){
-		modelo.iniciarm();
-		
+	void iniciar() throws Exception {
+		try {
+			modelo.iniciarm();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		listapr = vista.vistaprincipal.list;
 		modelo.cargar(listapr);
 
@@ -99,19 +103,30 @@ public class Controlador implements ActionListener  {
 	public void actionPerformed(ActionEvent e) {
 			if(vista.vistaprincipal.BotonPlay == e.getSource()){
 				miObservador.setPanel(1);
-				modelo.play();
-				
-				
-				
-		}
+				try {
+					modelo.play();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+
+			}
 			if(vista.vistaprincipal.BotonPause== e.getSource()){
 				miObservador.setPanel(2);
-				modelo.pause();
-				
+				try {
+					modelo.pause();
+				} catch (Exception e1) {
+					e1.printStackTrace();
 				}
+
+			}
 			if(vista.vistaprincipal.BotonStop == e.getSource()){
 				miObservador.setPanel(2);
-				modelo.stop();
+				try {
+					modelo.stop();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			if(vista.vistaprincipal.BotonAdelante== e.getSource()){
 				miObservador.setPanel(1);
@@ -124,14 +139,26 @@ public class Controlador implements ActionListener  {
 			
 			if(vista.vistaprincipal.list == e.getSource()){
 				miObservador.setPanel(2);
-				modelo.stop();
+				try {
+					modelo.stop();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				miObservador.setPanel(1);
-				
-				modelo.play();
+
+				try {
+					modelo.play();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			
 			if(vista.vistaprincipal.SeleccionCarpeta == e.getSource()){
-				modelo.stop();
+				try {
+					modelo.stop();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 				miObservador.setPanel(2);
 				modelo.seleccioncarpeta(listapr);
 			}
@@ -162,7 +189,11 @@ public class Controlador implements ActionListener  {
 			
 			if(vista.vistalistareproduccion.BotonPause == e.getSource()){
 				miObservador.setPanel(2);
-				modelo.pause();
+				try {
+					modelo.pause();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			
 			if(vista.vistalistareproduccion.BotonBorrar == e.getSource()){
@@ -171,7 +202,11 @@ public class Controlador implements ActionListener  {
 			
 			if(vista.vistalistareproduccion.BotonStop == e.getSource()){
 				miObservador.setPanel(2);
-				modelo.stop();
+				try {
+					modelo.stop();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 			
 			if(vista.vistalistareproduccion.BotonAdelante == e.getSource()){
