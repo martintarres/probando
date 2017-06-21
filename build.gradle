@@ -79,11 +79,12 @@ findbugs {
     reportLevel = "low"
 }
 */
+/*
 tasks.withType(FindBugs) {
     reports {
         xml.enabled = false
         html.enabled = true
     }
 }
-
+*/
 jacocoTestReport.dependsOn test
