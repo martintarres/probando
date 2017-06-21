@@ -6,18 +6,11 @@ import java.awt.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 
 
-
-
-public class VistaListaReproduccion extends JFrame implements Observer {
+														public class VistaListaReproduccion extends JFrame implements Observer {
 
 	ClaseObservador miObservador;
 	//ClaseObservador miObser;
@@ -25,7 +18,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 	
 	JPanel contentPane;
 	List ListaAleatoria;
-	JButton BotonAleatorio;
+	JToggleButton BotonAleatorio;
 	JButton BotonAdelante;
 	JSlider BarraVolumen;
 	JButton BotonAtras;
@@ -51,7 +44,7 @@ public class VistaListaReproduccion extends JFrame implements Observer {
 		contentPane.add(ListaAleatoria);
 		
 		
-		BotonAleatorio = new JButton();
+		BotonAleatorio = new JToggleButton();
 		BotonAleatorio.setBounds(335, 227, 70, 23);
 		contentPane.add(BotonAleatorio);
 		ImageIcon alea= new ImageIcon(getClass().getResource("alea.png").getPath());
