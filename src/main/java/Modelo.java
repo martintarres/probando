@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
-/*	En la clase modelo se encuentra todo el codigo que accen las acciones
+/*
+	En la clase modelo se encuentra todo el codigo que accen las acciones
  */
 public class Modelo extends Controlador implements BasicPlayerListener {
 
@@ -347,6 +348,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 	private void cambiarAleatorio(){
         int resultado = (int) (numeroalea.nextDouble() * terminoFinal + terminoInicial);
+        listarep.select(resultado);
 		reproducirListaRepr = new File(listarepro.get(resultado));
 		playLista(reproducirListaRepr);
 
