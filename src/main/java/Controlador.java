@@ -26,14 +26,13 @@ import javax.swing.event.ChangeListener;
 															// a los metodos que estan en la clase modelo
 public class Controlador implements ActionListener  {
 
-	Modelo modelo;
-	Vista vista;
+	private Modelo modelo;
+	private Vista vista;
 	private List listapr;
-	ClaseObservador miObservador;
-	boolean termino;
+	private ClaseObservador miObservador;
 
-	
-	List listarep;
+
+																private List listarep;
 	
 	Controlador(Modelo modelo, Vista vista){				// El constructor de la clase controlador
 		
@@ -43,7 +42,7 @@ public class Controlador implements ActionListener  {
 		this.modelo=modelo;
 		this.vista=vista;
 
-		termino=false;
+		/*boolean termino;*/
 
 		/* En esta parte se van a instanciar todos las posibles acciones que tenemos en los
 			botones pertenencientes a la clase principal
@@ -86,7 +85,7 @@ public class Controlador implements ActionListener  {
 
 		
 	}
-	public Controlador() {
+	Controlador() {
 
 	}
 
@@ -97,7 +96,7 @@ public class Controlador implements ActionListener  {
 
 				 */
 	
-	public void iniciar(){
+	void iniciar(){
 		modelo.iniciarm();
 		
 		listapr = vista.vistaprincipal.list;
@@ -233,13 +232,13 @@ public class Controlador implements ActionListener  {
 		 
 	 }
 
-	 public void avisar(){
+	 /*public void avisar(){
 		System.out.println("soy termino " + termino);
 		termino=true;
 		System.out.println("soy termino " + termino);
 	//	modelo.adelante();
 
-	 }
+	 }*/
 
 
 }
