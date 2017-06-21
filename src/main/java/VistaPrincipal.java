@@ -6,20 +6,14 @@ import java.awt.TextField;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JProgressBar;
 
 
 public class VistaPrincipal extends JFrame implements Observer {
 	
-	public ClaseObservador miObservador;
-	int seleccion;										//En esta clase se crea la vista principal
+	private ClaseObservador miObservador;
+	private int seleccion;										//En esta clase se crea la vista principal
 	JPanel contentPane;
 	List list;
 	TextField BuscarCancion;
@@ -33,14 +27,14 @@ public class VistaPrincipal extends JFrame implements Observer {
 	JButton SeleccionCarpeta;
 	JButton ListaReproduccion;
 	JButton AgregarListaReproduccion;
-	JProgressBar BarraProgreso;
+	final ThreadLocal<JProgressBar> BarraProgreso;
 	
-		public VistaPrincipal(ClaseObservador observador){
+		VistaPrincipal(ClaseObservador observador){
 			
 			miObservador=observador;
 			
 			
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -106,9 +100,10 @@ public class VistaPrincipal extends JFrame implements Observer {
 			ImageIcon agreg= new ImageIcon(getClass().getResource("mas.png").getPath());
 			System.out.println(getClass().getResource("mas.png").getPath());
 			AgregarListaReproduccion.setIcon(agreg);
-			
-			BarraProgreso = new JProgressBar();
-			BarraProgreso.setBounds(36, 236, 304, 14);
+
+			BarraProgreso = new ThreadLocal<>();
+			BarraProgreso.set(new JProgressBar());
+			BarraProgreso.get().setBounds(36, 236, 304, 14);
 			//contentPane.add(BarraProgreso);
 			
 			
