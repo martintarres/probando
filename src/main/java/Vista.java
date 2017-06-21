@@ -14,7 +14,7 @@ public class Vista extends JFrame implements Observer {
 	
 	ClaseObservador miObservador;
 	
-	private int seleccion;
+	/*private int seleccion;*/
 	VistaPrincipal vistaprincipal;
 	VistaListaReproduccion vistalistareproduccion;
 		
@@ -51,6 +51,8 @@ public class Vista extends JFrame implements Observer {
 		/*seleccion=miObservador.getPanelSeleccionado();
 	//	seleccion=miObser.getPanelSeleccionado();
 		System.out.println("en vista me llego " +seleccion  );*/
+		int seleccion;
+		seleccion=miObservador.getPanelSeleccionado();
 		if(seleccion == 0 ){
 	
 			setContentPane(miObservador.getVista());
