@@ -35,7 +35,7 @@ dependencies {
 
 
 apply plugin: 'java'
-apply plugin: 'checkstyle'
+//apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'findbugs'
 apply plugin: "jacoco"
@@ -49,12 +49,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile fileTree(dir: 'lib', include: '*.jar')
 }
-
+/*
 checkstyle {
     ignoreFailures = true
     toolVersion = '6.6'
 }
-
+*/
 tasks.withType(Checkstyle) {
     reports {
         xml.enabled = false
