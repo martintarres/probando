@@ -1,10 +1,8 @@
-/*
 import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.util.Random;
@@ -28,8 +26,10 @@ public class ModeloTest {
 	public void before(){
 
 		player= new BasicPlayer();
-		path = "C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
-        path1 = "C:\\Users\\marti\\Music\\Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3";
+		//path = "C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
+        path = getClass().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
+        //path1 = "C:\\Users\\marti\\Music\\Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3";
+        path1= getClass().getResource("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3").getPath();
         folder =new File (path);
         folder1= new File (path1);
 		try {
@@ -77,7 +77,8 @@ public class ModeloTest {
 		String seleccion ="cancion1";
 		String unir;
 		unir = path.concat(seleccion);
-		assertEquals("C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3cancion1", unir);
+		assertEquals("/C:/Users/marti/Desktop/probando/build/resources/test/Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3cancion1", unir);
+
 	}
 
 	@Test
@@ -140,14 +141,14 @@ public class ModeloTest {
 		for(int i=0; i<listatest.getItemCount();i++) {
 			listatest.select(i);
 			if(listatest.getSelectedItem().toLowerCase().contains(s)){
-				assertEquals(listatest.getSelectedItem(),"Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3" );
+				assertEquals("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3",listatest.getSelectedItem() );
 			}
 				}
 		 s ="col";
 		for(int i=0; i<listatest.getItemCount();i++) {
 			listatest.select(i);
 			if(listatest.getSelectedItem().toLowerCase().contains(s)){
-				assertEquals(listatest.getSelectedItem(),"Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3" );
+				assertEquals("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3",listatest.getSelectedItem() );
 			}
 		}
 			}
@@ -230,5 +231,4 @@ public class ModeloTest {
 	}*/
 
 	
-/*}
-*/
+}
