@@ -1,26 +1,11 @@
-import javazoom.jlgui.basicplayer.BasicController;
-import javazoom.jlgui.basicplayer.BasicPlayerEvent;
-import javazoom.jlgui.basicplayer.BasicPlayerException;
-import javazoom.jlgui.basicplayer.BasicPlayerListener;
-
-import java.awt.List;
-import java.awt.TextComponent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.Map;
-
-import javax.swing.JList;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 															// Esta es la clase que sirve para controlar todas las acciones
 															// que va a realizar el programa, y lo que hace es llamar
 															// a los metodos que estan en la clase modelo
