@@ -2,7 +2,7 @@
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 	/*
 	Esta es la clase vista, que contiene el JFrame , y de acuerdo a lo que nuestros observers nos indican,
@@ -14,16 +14,16 @@ public class Vista extends JFrame implements Observer {
 	
 	ClaseObservador miObservador;
 	
-	int seleccion;
+	private int seleccion;
 	VistaPrincipal vistaprincipal;
 	VistaListaReproduccion vistalistareproduccion;
 		
-		public Vista(ClaseObservador observador){
+		Vista(ClaseObservador observador){
 			miObservador=observador;
-		
-			
+
+
 			setTitle("Reproductor Musical");
-			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 			setBounds(100, 100, 450, 300);
 			setVisible(true);
 			
