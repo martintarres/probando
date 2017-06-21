@@ -19,7 +19,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 		private String unir;
 		private File[] listFiles;
 		private File folder;
-    private List listarep;
+    	private List listarep;
 		private ArrayList <String> listarepro;
 		private File reproducirListaRepr;
 		private Random numeroalea;
@@ -50,7 +50,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 			terminoInicial=0;
 			player.addBasicPlayerListener(this);
 			alea = false;
-/* boolean termine; */
+			/* boolean termine; */
             enPrincipal=true;
 		}
 
@@ -366,6 +366,7 @@ public class Modelo extends Controlador implements BasicPlayerListener {
 
 	@Override
 	public void stateUpdated(BasicPlayerEvent basicPlayerEvent) {
+		System.out.println("soy evento de modelo "+ basicPlayerEvent.getCode());
 
 				if (basicPlayerEvent.getCode() == 8) {
 					if(!enPrincipal) {
