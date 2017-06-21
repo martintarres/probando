@@ -8,8 +8,5 @@ public class Main {
 			Controlador controlador = new Controlador(modelo, vista);	/* se crea el controlador */
 			controlador.iniciar();										/* Se instancia el metodo inciar */
 			observador.addObserver(vista);								/* Se agregan los observers de las vistas */
-
-
-
 	}
 }
