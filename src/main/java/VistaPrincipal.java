@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 public class VistaPrincipal extends JFrame implements Observer {
 	
 	private ClaseObservador miObservador;
-	private int seleccion;										//En esta clase se crea la vista principal
 	JPanel contentPane;
 	List list;
 	TextField BuscarCancion;
@@ -21,15 +20,13 @@ public class VistaPrincipal extends JFrame implements Observer {
 	JSlider BarraVolumen;
 	JButton BotonAtras;
 	JButton BotonStop;
-	Label TextoBuscar;
 	JButton BotonPlay;
 	JButton BotonPause;
 	JButton SeleccionCarpeta;
 	JButton ListaReproduccion;
 	JButton AgregarListaReproduccion;
-	final ThreadLocal<JProgressBar> BarraProgreso;
-	
-		VistaPrincipal(ClaseObservador observador){
+
+	VistaPrincipal(ClaseObservador observador){
 			
 			miObservador=observador;
 			
@@ -68,11 +65,11 @@ public class VistaPrincipal extends JFrame implements Observer {
 			BotonStop = new JButton("Stop");
 			BotonStop.setBounds(172, 227, 70, 23);
 			contentPane.add(BotonStop);
-			
-			
-			TextoBuscar = new Label("Buscar Cancion");
-			TextoBuscar.setBounds(19, 11, 104, 23);
-			contentPane.add(TextoBuscar);
+
+
+		Label textoBuscar = new Label("Buscar Cancion");
+			textoBuscar.setBounds(19, 11, 104, 23);
+			contentPane.add(textoBuscar);
 			
 			BotonPlay = new JButton("Play");
 			BotonPlay.setBounds(90, 227, 70, 23);
@@ -101,9 +98,9 @@ public class VistaPrincipal extends JFrame implements Observer {
 			System.out.println(getClass().getResource("mas.png").getPath());
 			AgregarListaReproduccion.setIcon(agreg);
 
-			BarraProgreso = new ThreadLocal<>();
-			BarraProgreso.set(new JProgressBar());
-			BarraProgreso.get().setBounds(36, 236, 304, 14);
+		ThreadLocal<JProgressBar> barraProgreso = new ThreadLocal<>();
+			barraProgreso.set(new JProgressBar());
+			barraProgreso.get().setBounds(36, 236, 304, 14);
 			//contentPane.add(BarraProgreso);
 			
 			
@@ -111,7 +108,7 @@ public class VistaPrincipal extends JFrame implements Observer {
 
 		@Override													// Esta es la parte que implementa los observer
 		public void update(Observable o, Object arg) {
-			seleccion=miObservador.getPanelSeleccionado();			// Se recibe el int que seteamos en los observer
+			int seleccion = miObservador.getPanelSeleccionado();
 			System.out.println("Notifico en vistaprinciapl");
 			
 			if(seleccion ==1 ){
