@@ -56,7 +56,7 @@ public class ModeloTest extends Modelo {
 
         assertEquals(1 , listatest.getItemCount());*/
     }
-
+/*
     @Test
     public void play() throws Exception {
     }
@@ -112,5 +112,5 @@ public class ModeloTest extends Modelo {
     @Test
     public void aleatorio() throws Exception {
     }
-
+*/
 }
