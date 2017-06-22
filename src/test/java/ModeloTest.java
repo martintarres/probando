@@ -44,17 +44,17 @@ public class ModeloTest extends Modelo {
         }
         listatest = new List();
     }
-    @Test
+  /*  @Test
     public void iniciarm() {
     }
-
+*/
     @Test
     public void cargar() {
-        /*assertEquals(0 , listatest.getItemCount());
+        assertEquals(0 , listatest.getItemCount());
         listatest.add(folder.getName());
 
 
-        assertEquals(1 , listatest.getItemCount());*/
+        assertEquals(1 , listatest.getItemCount());
     }
 /*
     @Test
