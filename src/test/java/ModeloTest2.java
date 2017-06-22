@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class ModeloTest2 extends Modelo {
     private BasicPlayer player;
     private File folder;
-    private List listatest;
+    public List listatest;
     private File folder1;
     private String path;
     private String path1;
@@ -52,7 +52,7 @@ public class ModeloTest2 extends Modelo {
 
     @Test
     public void cargar() throws Exception {
-        //listatest = new List();
+        listatest = new List();
         System.out.println("la verga");
        // String name= "src/test/resources/Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
        // path = getClass().getClassLoader().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
