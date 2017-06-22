@@ -45,11 +45,11 @@ public class ModeloTest extends Modelo {
         listatest = new List();
     }
     @Test
-    public void iniciarm() throws Exception {
+    public void iniciarm() {
     }
 
     @Test
-    public void cargar() throws Exception {
+    public void cargar() {
         /*assertEquals(0 , listatest.getItemCount());
         listatest.add(folder.getName());
 
