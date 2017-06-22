@@ -31,17 +31,17 @@ public class ModeloTest extends Modelo {
 
         player= new BasicPlayer();
         //path = "C:\\Users\\marti\\Music\\Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
-        //path = getClass().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
+        path = getClass().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
         //path1 = "C:\\Users\\marti\\Music\\Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3";
-        //path1= getClass().getResource("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3").getPath();
-        //folder =new File (path);
-        //folder1= new File (path1);
-        /*try {
+        path1= getClass().getResource("Luis_Fonsi_-_Despacito_ft_Daddy_Yankee_kJQP7kiw5Fk.mp3").getPath();
+        folder =new File (path);
+        folder1= new File (path1);
+        try {
             player.open(folder);
         } catch (BasicPlayerException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
         listatest = new List();
     }
     @Test
