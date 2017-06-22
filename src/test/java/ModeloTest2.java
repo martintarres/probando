@@ -52,7 +52,7 @@ public class ModeloTest2 extends Modelo {
 
     @Test
     public void cargar() throws Exception {
-        listatest = new List();
+        //listatest = new List();
 
        // String name= "src/test/resources/Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
        // path = getClass().getClassLoader().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
