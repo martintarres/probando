@@ -26,7 +26,7 @@ public class ModeloTest2 extends Modelo {
     private int resultadoalea;
     private Random numeroalea;
 
-
+/*
     @Before
     public void setUp() throws Exception {
         player= new BasicPlayer();
@@ -44,13 +44,16 @@ public class ModeloTest2 extends Modelo {
         }
         listatest = new List();
     }
-
+*/
     @Test
     public void iniciarm() throws Exception {
     }
 
     @Test
     public void cargar() throws Exception {
+        listatest = new List();
+        path = getClass().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
+        folder =new File (path);
         assertEquals(0 , listatest.getItemCount());
         listatest.add(folder.getName());
 
