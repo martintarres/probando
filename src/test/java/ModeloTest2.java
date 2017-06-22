@@ -52,9 +52,10 @@ public class ModeloTest2 extends Modelo {
     @Test
     public void cargar() throws Exception {
         listatest = new List();
-        String name= "src/test/resources/Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
-       // path = getClass().getClassLoader().getResource(name).getPath();
-        folder =new File (name);
+       // String name= "src/test/resources/Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3";
+        path = getClass().getClassLoader().getResource("Coldplay_-_The_Scientist_RB-RcX5DS5A.mp3").getPath();
+        System.out.println(path);
+        folder =new File (path);
         assertEquals(0 , listatest.getItemCount());
         listatest.add(folder.getName());
         assertEquals(1 , listatest.getItemCount());
